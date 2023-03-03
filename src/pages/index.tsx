@@ -2,15 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import DebounceInput from "@/components/DebounceInput";
+import TodoList from "@/components/TodoList";
 
 const inter = Inter({ subsets: ["latin"] });
-export interface stateProps {
-  value: string;
-  loading: boolean;
-  num: number;
-  users: string[];
-  search: string;
-}
+
 export default function Home() {
   return (
     <>
@@ -22,6 +17,7 @@ export default function Home() {
       </Head>
       <main>
         <DebounceInput value={""} loading={false} num={0} users={[]} search={""} />
+        <TodoList />
       </main>
     </>
   );
