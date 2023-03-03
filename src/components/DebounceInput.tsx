@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { ChangeEvent } from "react";
 import { useState, useEffect } from "react";
-import { stateProps } from "@/pages";
 
-interface IProps extends stateProps {
+interface IProps {
+  value: string;
+  loading: boolean;
+  num: number;
+  users: string[];
+  search: string;
   login?: string;
   id?: number;
   node_id?: string;
@@ -26,7 +30,7 @@ interface IProps extends stateProps {
 }
 type InputEvent = ChangeEvent<HTMLInputElement>;
 function useDebounce(value: string, delay: number) {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+  const [debouncedValue, setDebouncedValue] = useState<string>(value);
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -42,9 +46,9 @@ function useDebounce(value: string, delay: number) {
 }
 
 const DebounceInput = (_props: IProps) => {
-  const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState<IProps[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const debouncedSearch = useDebounce(search, 1000);
 
